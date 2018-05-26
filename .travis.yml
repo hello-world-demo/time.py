@@ -7,7 +7,8 @@ install: true
 
 script:
 - /usr/bin/time --format '%M %S %U %I %O' cat /proc/self/cmdline
-- /usr/bin/time --format '%M %S %U %I %O' grep Pid: /proc/self/status
+- |
+  /usr/bin/time --format '%M %S %U %I %O' grep Pid: /proc/self/status
 - /usr/bin/time --format '%M %S %U %I %O' php --run "echo 'hello';"
 - /usr/bin/time --format '%M %S %U %I %O' sleep 1
 - /usr/bin/time --format '%M %S %U %I %O' whoami
