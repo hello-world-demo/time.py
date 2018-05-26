@@ -23,7 +23,9 @@ def run_command (cmd): #... missing argument
     print(pcmdlinef.read())
     print(cmdlinef.read())
     subprocess.run(["cat", '/proc/'+str(os.getpid())+'/cmdline'])
+    print()
     subprocess.run(["cat", '/proc/'+str(pid)+'/cmdline'])
+    print()
     os.wait4(pid, 0)
     print("Child just terminated.")
     # print(statusf.read()) # ProcessLookupError: [Errno 3] No such process
