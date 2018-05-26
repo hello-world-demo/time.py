@@ -22,7 +22,7 @@ def run_command (cmd): #... missing argument
     iof = open('/proc/'+str(pid)+'/io', 'r')
     print(pcmdlinef.read())
     print(cmdlinef.read())
-    print()
+    print('*')
     subprocess.run(["cat", '/proc/'+str(os.getpid())+'/cmdline'])
     print()
     subprocess.run(["cat", '/proc/'+str(pid)+'/cmdline'])
