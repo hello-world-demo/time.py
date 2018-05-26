@@ -28,5 +28,6 @@ def run_command (cmd): #... missing argument
     # print(io.read())
 
 run_command(["cat", "/proc/self/cmdline"])
+run_command(["grep", "Pid:", "/proc/self/status"])
 run_command(["sleep", "1"])
 run_command(["whoami"])
