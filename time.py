@@ -16,11 +16,14 @@ def run_command (cmd): #... missing argument
         os._exit(126) # errno == ENOENT ? 127 : 126
     print('ppid:_'+str(os.getpid())+'_')
     print('pid:__'+str(pid)+'_')
+    pcmdlinef = open('/proc/'+str(os.getpid())+'/cmdline', 'r')
     cmdlinef = open('/proc/'+str(pid)+'/cmdline', 'r') # This is not from time.c
     statusf = open('/proc/'+str(pid)+'/status', 'r')
     iof = open('/proc/'+str(pid)+'/io', 'r')
+    print(pcmdlinef.read())
     print(cmdlinef.read())
     os.wait4(pid, 0)
+    print("Child just terminated.")
     # print(statusf.read()) # ProcessLookupError: [Errno 3] No such process
     # print(io.read())
 
