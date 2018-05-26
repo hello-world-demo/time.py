@@ -1,7 +1,13 @@
 language: python
+python:
+- 3.6
+
+install: true
+
 
 script:
 - python3 time.py
+
 
 after_script:
 - python3 --version
