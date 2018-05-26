@@ -21,4 +21,4 @@ def run_command (cmd): #... missing argument
     print(statusf.read())
     print(io.read())
 
-run_command("whoami")
+run_command(["whoami"])
