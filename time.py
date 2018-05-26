@@ -7,7 +7,7 @@ def run_command (cmd): #... missing argument
     pid = os.fork()
     if pid < 0:
         exit("cannot fork")
-    elsif 0 == pid:
+    elif 0 == pid:
         # If child.
         # Don't cast execvp arguments; that causes errors on some systems,
 	      # versus merely warnings if the cast is left off.
