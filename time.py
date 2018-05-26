@@ -2,7 +2,30 @@
 
 import os, subprocess, sys
 
-def run_command (cmd): #... missing argument
+def run_command(cmd): #... missing argument
+# https://sources.debian.org/src/time/1.7-25.1/time.c/
+    pid = os.fork()
+    if pid < 0:
+        exit("cannot fork")
+    elif 0 == pid:
+        # If child.
+        # Don't cast execvp arguments; that causes errors on some systems,
+	      # versus merely warnings if the cast is left off.
+        os.execvp(cmd[0], cmd)
+        # error (0, errno, "cannot run %s", cmd[0]);
+        os._exit(126) # errno == ENOENT ? 127 : 126
+    print(os.wait4(pid, 0))
+    print()
+
+run_command(["cat", "/proc/self/cmdline"])
+run_command(["grep", "Pid:", "/proc/self/status"])
+run_command(["php", "--run", "echo 'hello';"])
+run_command(["sleep", "1"])
+run_command(["whoami"])
+
+
+
+def run_command_proc_not_working (cmd): #... missing argument
 # https://sources.debian.org/src/time/1.7-25.1/time.c/
     pid = os.fork()
     if pid < 0:
@@ -30,11 +53,3 @@ def run_command (cmd): #... missing argument
     print(os.wait4(pid, 0))
     print("Child just terminated.")
     # print(statusf.read()) # ProcessLookupError: [Errno 3] No such process
-
-run_command(["cat", "/proc/self/cmdline"])
-print()
-run_command(["grep", "Pid:", "/proc/self/status"])
-print()
-run_command(["sleep", "1"])
-print()
-run_command(["whoami"])
