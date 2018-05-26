@@ -18,7 +18,7 @@ def run_command (cmd): #... missing argument
     statusf = open('/proc/'+str(pid)+'/status', 'r') # This is not from time.c
     iof = open('/proc/'+str(pid)+'/io', 'r')
     os.wait4(pid, 0)
-    print(statusf.read())
-    print(io.read())
+    # print(statusf.read()) # ProcessLookupError: [Errno 3] No such process
+    # print(io.read())
 
 run_command(["whoami"])
