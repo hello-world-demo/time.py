@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, sys
+import os, subprocess, sys
 
 def run_command (cmd): #... missing argument
 # https://sources.debian.org/src/time/1.7-25.1/time.c/
@@ -18,16 +18,15 @@ def run_command (cmd): #... missing argument
     print('pid:__'+str(pid)+'_')
     pcmdlinef = open('/proc/'+str(os.getpid())+'/cmdline', 'r')
     cmdlinef = open('/proc/'+str(pid)+'/cmdline', 'r') # This is not from time.c
-    cmdlinef2 = open('/proc/'+str(pid)+'/cmdline', 'r') # This is not from time.c
     statusf = open('/proc/'+str(pid)+'/status', 'r')
     iof = open('/proc/'+str(pid)+'/io', 'r')
     print(pcmdlinef.read())
     print(cmdlinef.read())
+    subprocess.run(["cat", '/proc/'+str(os.getpid())+'/cmdline'])
+    subprocess.run(["cat", '/proc/'+str(pid)+'/cmdline'])
     os.wait4(pid, 0)
-    print(cmdlinef2.read())
     print("Child just terminated.")
     # print(statusf.read()) # ProcessLookupError: [Errno 3] No such process
-    # print(io.read())
 
 run_command(["cat", "/proc/self/cmdline"])
 print()
