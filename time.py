@@ -14,7 +14,8 @@ def run_command (cmd): #... missing argument
         os.execvp(cmd[0], cmd)
         # error (0, errno, "cannot run %s", cmd[0]);
         os._exit(126) # errno == ENOENT ? 127 : 126
-    print('pid:_'+str(pid)+'_')
+    print('ppid:_'+str(os.getpid())+'_')
+    print('pid:__'+str(pid)+'_')
     statusf = open('/proc/'+str(pid)+'/status', 'r') # This is not from time.c
     iof = open('/proc/'+str(pid)+'/io', 'r')
     print(statusf.read())
