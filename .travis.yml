@@ -1,0 +1,4 @@
+language: python
+
+script:
+- python3 time.py
