@@ -27,5 +27,6 @@ def run_command (cmd): #... missing argument
     # print(statusf.read()) # ProcessLookupError: [Errno 3] No such process
     # print(io.read())
 
+run_command(["cat", "/proc/self/cmdline"])
 run_command(["sleep", "1"])
 run_command(["whoami"])
